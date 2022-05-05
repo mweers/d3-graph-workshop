@@ -39,7 +39,9 @@
 	$: boundsHeight = height - margin.top - margin.bottom;
 
 	let xRange = [0, 0];
+	//let yRange = [0, 0];
 	$: boundsWidth, (xRange = [0, boundsWidth]);
+	//$: boundsHeight, (yRange = [boundsHeight, 0]);
 
 	// create tooltip
 
@@ -58,8 +60,9 @@
 	$: yScale = d3
 	  .scaleLinear()
 	  .domain(d3.extent(data, yAccessor))
+	  //.range(yRange)
 	  .range([boundsHeight, 0])
-	  .nice(true);
+	  .nice(false);
 
 	// set up interactions
 	let hoveredPoint = null;
@@ -90,6 +93,7 @@
 	    .on("zoom", event => {
 	      // update the range of our xScale
 	      xRange = [event.transform.applyX(0), event.transform.applyX(boundsWidth)];
+	      //yRange = [event.transform.applyY(0), event.transform.applyY(boundsHeight)];
 	    });
 
 	  // d3 uses "d3 selection objects" to work with DOM elements
