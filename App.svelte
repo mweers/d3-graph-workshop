@@ -81,7 +81,7 @@
 	  const zoomGenerator = d3
 	    .zoom()
 	    .extent([[0, 0], [width, height]])
-	    .scaleExtent([1, 8]) // restrict zooming
+	    .scaleExtent([1, 100]) // restrict zooming
 	    .translateExtent([
 	      // restrict panning
 	      [0, 0],
